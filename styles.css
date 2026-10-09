@@ -148,6 +148,8 @@ em { font-style: italic; }
 .btn-primary:hover { background: var(--ink-2); }
 .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+.btn-sm { padding: 0.7rem 1.4rem; font-size: 0.9rem; }
+.section-actions { margin-top: 2.5rem; display: flex; }
 
 :focus-visible {
   outline: 2px solid var(--sand-deep);
@@ -549,6 +551,8 @@ em { font-style: italic; }
   color: var(--sand-deep);
   border-top: 1px solid var(--line);
 }
+.archive-card .card-author { font-style: italic; }
+.archive-card .btn { align-self: flex-start; margin-top: 1rem; }
 .card-link {
   align-self: flex-start;
   margin-top: 1rem;
@@ -1073,7 +1077,8 @@ em { font-style: italic; }
   .lead { font-size: 1.08rem; }
 
   .hero-actions { flex-direction: column; }
-  .hero-actions .btn { width: 100%; }
+  .hero-actions .btn,
+  .section-actions .btn { width: 100%; }
 
   .pillars { grid-template-columns: 1fr; }
   .pillar,
