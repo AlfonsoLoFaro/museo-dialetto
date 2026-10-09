@@ -1,0 +1,25 @@
+# Static site: no build step, the folder is published as it is.
+[build]
+  publish = "."
+
+# The camera (AR) is allowed for this site only; nothing else is requested.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "camera=(self), microphone=(), geolocation=()"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Never serve local tooling folders, even if they end up in the upload.
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Build tooling for the AR target; not part of the site.
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404.html"
+  status = 404
+  force = true

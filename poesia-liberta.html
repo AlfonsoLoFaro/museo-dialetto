@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="«A mia figlia Libertà», poesia di Michele Pane (Chicago, 8 aprile 1937). Leggila, ascoltala e vivila in realtà aumentata – Museo Permanente del Dialetto.">
+  <meta name="theme-color" content="#232a2f">
+  <title>A mia figlia Libertà – Michele Pane · Museo Permanente del Dialetto</title>
+  <link rel="icon" type="image/png" href="images/logo-symbol.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="poesia-liberta.css">
+
+  <!--
+    AR libraries (MindAR + Three.js), pinned to versions that work together.
+    The import map only tells the browser WHERE the libraries live: nothing is
+    downloaded until the visitor taps "Avvia esperienza AR" (ar-liberta.js is
+    loaded on demand), so the poem page itself stays light and fast.
+    Do not bump three above r161: MindAR 1.2.5 still uses `sRGBEncoding`.
+  -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+      "mindar-image-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <!-- ============ HEADER (same as the main site) ============ -->
+  <header class="site-header" id="top">
+    <a href="index.html" class="brand" aria-label="Museo Permanente del Dialetto – torna alla home">
+      <img src="images/logo-symbol.png" alt="" class="brand-mark" width="36" height="44">
+      <span class="brand-text">Museo Permanente <em>del Dialetto</em></span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Navigazione principale">
+      <a href="index.html#progetto">Il progetto</a>
+      <a href="index.html#pane">Michele Pane</a>
+      <a href="index.html#esperienza">Esperienza</a>
+      <a href="index.html#archivio" class="is-current">Archivio</a>
+      <a href="index.html#eventi">Eventi</a>
+      <a href="index.html#galleria">Galleria</a>
+      <a href="index.html#contatti" class="nav-cta">Contatti</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. INTRO ============ -->
+    <section class="poem-hero" aria-labelledby="poem-title">
+      <div class="poem-hero-copy">
+        <nav class="breadcrumb reveal-up" aria-label="Percorso">
+          <a href="index.html#archivio">Archivio</a>
+          <span aria-hidden="true">/</span>
+          <span>Poesie</span>
+        </nav>
+
+        <p class="eyebrow reveal-up" style="--delay: 0.05s">Sala 01 · Poesie</p>
+        <h1 id="poem-title" class="reveal-up" style="--delay: 0.1s">A mia figlia Libertà</h1>
+        <p class="poem-author reveal-up" style="--delay: 0.18s">Michele Pane</p>
+
+        <!-- Short introduction: edit freely -->
+        <p class="hero-lead reveal-up" style="--delay: 0.26s">
+          Una dedica in versi di Michele Pane alla figlia Libertà, scritta a Chicago nella primavera del 1937: la lingua degli affetti, portata lontano dalla terra d'origine.
+        </p>
+
+        <div class="hero-actions reveal-up" style="--delay: 0.34s">
+          <button type="button" class="btn btn-primary" id="listen-btn" aria-pressed="false" aria-controls="poem-audio">
+            <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+            <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5h3.5v13H7zM13.5 5.5H17v13h-3.5z"/></svg>
+            <span class="btn-label">Ascolta la poesia</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="ar-btn" aria-haspopup="dialog">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/>
+              <circle cx="12" cy="12" r="2.6"/>
+            </svg>
+            <span>Avvia esperienza AR</span>
+          </button>
+        </div>
+
+        <p class="poem-note reveal-up" style="--delay: 0.4s">
+          L'esperienza in realtà aumentata usa la fotocamera del telefono: ti verrà chiesto il permesso e nessuna immagine viene registrata o inviata.
+        </p>
+        <p class="audio-status" id="audio-status" role="status" aria-live="polite"></p>
+
+        <!-- Narration. The same element drives the page button and the AR button. -->
+        <audio id="poem-audio" preload="none" src="assets/audio/a-mia-figlia-liberta.mp3"></audio>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="arch-frame">
+          <img src="images/logo-symbol.png" alt="" class="hero-symbol" width="253" height="312">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. POEM + METADATA ============ -->
+    <section class="section section-sand poem-section" aria-labelledby="testo-title">
+      <div class="container poem-layout">
+
+        <!-- Full poem text. -->
+        <div class="poem-body reveal">
+          <p class="eyebrow">Il testo</p>
+          <h2 id="testo-title" class="visually-hidden">Testo della poesia</h2>
+
+          <!--
+            ┌─ WHERE TO PASTE THE FULL POEM ────────────────────────────┐
+            │ One <p class="stanza"> per strofa.                        │
+            │ Put <br> at the end of each verse except the last one.    │
+            │ Delete the three placeholder stanzas below.               │
+            └───────────────────────────────────────────────────────────┘
+          -->
+          <div class="poem-text" id="poem-text">
+            <p class="stanza">
+              [Primo verso della prima strofa]<br>
+              [Secondo verso della prima strofa]<br>
+              [Terzo verso della prima strofa]<br>
+              [Quarto verso della prima strofa]
+            </p>
+            <p class="stanza">
+              [Primo verso della seconda strofa]<br>
+              [Secondo verso della seconda strofa]<br>
+              [Terzo verso della seconda strofa]<br>
+              [Quarto verso della seconda strofa]
+            </p>
+            <p class="stanza">
+              [Primo verso della terza strofa]<br>
+              [Secondo verso della terza strofa]<br>
+              [Terzo verso della terza strofa]<br>
+              [Quarto verso della terza strofa]
+            </p>
+          </div>
+
+          <p class="poem-dateline">
+            <span>Chicago, Ill.</span>, <time datetime="1937-04-08">8 aprile 1937</time>
+          </p>
+        </div>
+
+        <!-- Metadata ("museum label") -->
+        <aside class="poem-meta reveal" aria-labelledby="scheda-title">
+          <p class="eyebrow" id="scheda-title">Scheda dell'opera</p>
+
+          <dl class="meta-list">
+            <div>
+              <dt>Titolo</dt>
+              <dd>A mia figlia Libertà</dd>
+            </div>
+            <div>
+              <dt>Autore</dt>
+              <dd>Michele Pane</dd>
+            </div>
+            <div>
+              <dt>Luogo</dt>
+              <dd id="meta-place">Chicago, Ill.</dd>
+            </div>
+            <div>
+              <dt>Data</dt>
+              <dd id="meta-date"><time datetime="1937-04-08">8 aprile 1937</time></dd>
+            </div>
+          </dl>
+
+          <!--
+            Short excerpt. It is shown here AND on the floating panel in AR:
+            edit it once and both places update. One verse per line, separated by <br>.
+          -->
+          <blockquote class="pull-quote">
+            <p id="poem-excerpt">[Primo verso dell'estratto]<br>[Secondo verso dell'estratto]</p>
+            <cite>Estratto</cite>
+          </blockquote>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER (same as the main site) ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo-symbol.png" alt="Simbolo del Museo Permanente del Dialetto" class="footer-mark" width="48" height="59">
+        <p class="footer-title">Museo Permanente <em>del Dialetto</em></p>
+        <p class="footer-sub">Omaggio a Michele Pane</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Link del sito">
+        <h2>Esplora</h2>
+        <a href="index.html#progetto">Il progetto</a>
+        <a href="index.html#pane">Michele Pane</a>
+        <a href="index.html#archivio">Archivio</a>
+        <a href="index.html#eventi">Eventi</a>
+      </nav>
+
+      <div class="footer-nav">
+        <h2>Informazioni</h2>
+        <a href="index.html#contatti">Contatti</a>
+        <a href="#">Note legali</a>
+        <a href="#">Privacy</a>
+        <a href="#">Accessibilità</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Museo Permanente del Dialetto. Tutti i diritti riservati.</p>
+      <a href="#top" class="back-to-top">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <!-- ============ AR EXPERIENCE (full-screen layer, hidden until started) ============
+       data-target : compiled MindAR image target (.mind)
+       data-image  : OPTIONAL transparent PNG that floats over the image (ignored if the file is missing)
+  -->
+  <div class="ar" id="ar" role="dialog" aria-modal="true" aria-label="Esperienza in realtà aumentata" hidden
+       data-target="assets/ar/liberta/targets.mind"
+       data-image="assets/ar/liberta/figure.png">
+
+    <!-- MindAR mounts the camera video and the WebGL canvas in here -->
+    <div class="ar-stage" id="ar-stage"></div>
+
+    <!-- Corner brackets that guide the visitor while scanning -->
+    <div class="ar-reticle" id="ar-reticle" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <button type="button" class="ar-close" id="ar-close">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      <span>Chiudi</span>
+    </button>
+
+    <div class="ar-hud">
+      <p class="ar-hint" id="ar-hint" role="status" aria-live="polite"></p>
+      <button type="button" class="ar-audio" id="ar-audio" aria-pressed="false" hidden>
+        <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5h3.5v13H7zM13.5 5.5H17v13h-3.5z"/></svg>
+        <span class="ar-audio-label">Ascolta la poesia</span>
+      </button>
+    </div>
+
+    <!-- Loading screen while the camera and the tracker start -->
+    <div class="ar-screen ar-loading" id="ar-loading">
+      <div class="ar-loading-inner">
+        <div class="ar-mark"><img src="images/logo-symbol.png" alt="" width="48" height="59"></div>
+        <p class="ar-screen-title">Un momento…</p>
+        <p class="ar-screen-text" id="ar-loading-text" role="status" aria-live="polite">Sto preparando la fotocamera.</p>
+        <span class="ar-bar" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <!-- Fallback: permission denied, no camera, missing files, … -->
+    <div class="ar-screen ar-fallback" id="ar-fallback" hidden>
+      <div class="ar-fallback-inner">
+        <p class="eyebrow">Realtà aumentata</p>
+        <p class="ar-screen-title" id="ar-fallback-title" role="alert">Fotocamera non autorizzata</p>
+        <p class="ar-screen-text" id="ar-fallback-text"></p>
+        <div class="ar-fallback-actions">
+          <button type="button" class="btn btn-light" id="ar-retry">Riprova</button>
+          <button type="button" class="btn btn-ghost-light" id="ar-back">Torna alla poesia</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="poesia-liberta.js"></script>
+</body>
+</html>

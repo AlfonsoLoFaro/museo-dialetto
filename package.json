@@ -1,0 +1,14 @@
+{
+  "name": "poesia-ar-target",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for the MindAR image target (the site itself is static)",
+  "scripts": {
+    "build:target": "node scripts/compile-target.mjs",
+    "build-target": "node scripts/compile-target.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.10",
+    "mind-ar": "^1.2.5"
+  }
+}
