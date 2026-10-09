@@ -11,8 +11,9 @@ Put these files in this folder (exact names):
   target.jpg    optional  A copy of the original image (for printing / archive).
                           Not used by the code.
 
-  figure.png    optional  A PNG with a transparent background. If present it
-                          floats gently over the recognised image.
+  figure.png    optional  An archival picture (PNG, ideally transparent). If
+                          present it rests faintly (low opacity) behind the
+                          floating words.
                           Suggested size: about 1000 px wide.
 
 Tips for the target image: high contrast, lots of fine detail, no large flat
