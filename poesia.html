@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" id="meta-description" content="Una poesia di Michele Pane in dialetto calabrese – Museo Permanente del Dialetto.">
+  <meta name="theme-color" content="#232a2f">
+  <title>Poesia – Michele Pane · Museo Permanente del Dialetto</title>
+  <link rel="icon" type="image/png" href="images/logo-symbol.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="poesia-liberta.css">
+  <link rel="stylesheet" href="archivio.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <!-- ============ HEADER (same as the main site) ============ -->
+  <header class="site-header" id="top">
+    <a href="index.html" class="brand" aria-label="Museo Permanente del Dialetto – torna alla home">
+      <img src="images/logo-symbol.png" alt="" class="brand-mark" width="36" height="44">
+      <span class="brand-text">Museo Permanente <em>del Dialetto</em></span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Navigazione principale">
+      <a href="index.html#progetto">Il progetto</a>
+      <a href="index.html#pane">Michele Pane</a>
+      <a href="index.html#esperienza">Esperienza</a>
+      <a href="poesie.html" class="is-current">Archivio</a>
+      <a href="index.html#eventi">Eventi</a>
+      <a href="index.html#galleria">Galleria</a>
+      <a href="index.html#contatti" class="nav-cta">Contatti</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Shown while the poem is loading (and if JavaScript is off) -->
+    <section class="poem-missing" id="loading">
+      <div class="container">
+        <p class="eyebrow">Poesia</p>
+        <p id="loading-text" role="status">Carico la poesia…</p>
+        <noscript><p>Per leggere la scheda serve JavaScript. Puoi comunque sfogliare il <a href="poesie.html">catalogo delle poesie</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ============ POEM (filled by poesia.js) ============ -->
+    <div id="poem-view" hidden>
+
+      <section class="poem-head" aria-labelledby="poem-title">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Percorso">
+            <a href="poesie.html">Archivio</a>
+            <span aria-hidden="true">/</span>
+            <a href="poesie.html" id="crumb-collection">Poesie</a>
+          </nav>
+
+          <p class="eyebrow" id="poem-collection"></p>
+          <h1 id="poem-title"></h1>
+          <p class="poem-author" id="poem-author">Michele Pane</p>
+
+          <!-- Audio and AR controls: filled only when the poem has them -->
+          <div class="hero-actions" id="poem-actions"></div>
+          <p class="poem-note" id="ar-note" hidden>
+            L'esperienza in realtà aumentata usa la fotocamera del telefono: ti verrà chiesto il permesso e nessuna immagine viene registrata o inviata.
+          </p>
+          <p class="audio-status" id="audio-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="section section-sand poem-section" aria-labelledby="testo-title">
+        <div class="container poem-layout">
+
+          <div class="poem-body">
+            <p class="eyebrow">Il testo</p>
+            <h2 id="testo-title" class="visually-hidden">Testo della poesia</h2>
+            <div id="poem-text"></div>
+            <p class="poem-dateline" id="poem-dateline" hidden></p>
+            <div class="poem-notes" id="poem-notes" hidden>
+              <strong>Nota</strong>
+              <p id="poem-notes-text"></p>
+            </div>
+            <nav class="poem-pager" id="poem-pager" aria-label="Altre poesie della raccolta" hidden></nav>
+          </div>
+
+          <aside class="poem-meta" aria-labelledby="scheda-title">
+            <p class="eyebrow" id="scheda-title">Scheda dell'opera</p>
+            <dl class="meta-list" id="meta-list"></dl>
+          </aside>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ NOT FOUND ============ -->
+    <section class="poem-missing" id="not-found" hidden>
+      <div class="container">
+        <p class="eyebrow">Archivio</p>
+        <h1 id="missing-title">Poesia non trovata</h1>
+        <p id="missing-text">La scheda che cerchi non esiste o non è più disponibile.</p>
+        <div class="hero-actions">
+          <a href="poesie.html" class="btn btn-primary">Sfoglia tutte le poesie</a>
+          <a href="index.html" class="btn btn-ghost">Torna alla home</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER (same as the main site) ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo-symbol.png" alt="Simbolo del Museo Permanente del Dialetto" class="footer-mark" width="48" height="59">
+        <p class="footer-title">Museo Permanente <em>del Dialetto</em></p>
+        <p class="footer-sub">Omaggio a Michele Pane</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Link del sito">
+        <h2>Esplora</h2>
+        <a href="index.html#progetto">Il progetto</a>
+        <a href="index.html#pane">Michele Pane</a>
+        <a href="poesie.html">Archivio</a>
+        <a href="index.html#eventi">Eventi</a>
+      </nav>
+
+      <div class="footer-nav">
+        <h2>Informazioni</h2>
+        <a href="index.html#contatti">Contatti</a>
+        <a href="#">Note legali</a>
+        <a href="#">Privacy</a>
+        <a href="#">Accessibilità</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Museo Permanente del Dialetto. Tutti i diritti riservati.</p>
+      <a href="#top" class="back-to-top">Torna su ↑</a>
+    </div>
+  </footer>
+
+  <script src="site-shell.js"></script>
+  <script type="module" src="poesia.js"></script>
+</body>
+</html>

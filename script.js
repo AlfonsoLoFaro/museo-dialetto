@@ -96,6 +96,21 @@
     });
   });
 
+  // ---------- Archive teaser: poem counts per collection ----------
+  // The numbers in the HTML are a fallback; the real ones come from the archive index.
+  const countEls = document.querySelectorAll('[data-collection-count]');
+  if (countEls.length) {
+    fetch('data/poesie/index.json')
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(response.status))))
+      .then((index) => {
+        countEls.forEach((node) => {
+          const total = index.poems.filter((p) => p.collection === node.dataset.collectionCount && p.contentAvailable !== false).length;
+          if (total) node.textContent = total;
+        });
+      })
+      .catch(() => {}); // keep the fallback numbers
+  }
+
   // ---------- Decorative QR code ----------
   // Builds a 21×21 module grid with the three finder patterns and a seeded
   // pseudo-random body, so the example looks the same on every load.

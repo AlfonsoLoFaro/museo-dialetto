@@ -1,0 +1,10 @@
+{
+  "_nota": "Metadati delle raccolte (anno e luogo di pubblicazione secondo la voce «Michele Pane» di Wikipedia in italiano). Modificabile a mano; non è toccato dall'importatore.",
+  "collezioni": [
+    { "nome": "Trilogia",        "slug": "trilogia",        "anno": "1901", "luogo": "Nicastro",  "descrizione": "Raccolta pubblicata a Nicastro nel 1901." },
+    { "nome": "Accuordi",        "slug": "accuordi",        "anno": "1911", "luogo": "Napoli",    "descrizione": "Raccolta pubblicata a Napoli nel 1911." },
+    { "nome": "Viole e Ortiche", "slug": "viole-e-ortiche", "anno": "1906", "luogo": "New York",  "descrizione": "Raccolta pubblicata a New York nel 1906." },
+    { "nome": "Sorrisi",         "slug": "sorrisi",         "anno": "1914", "luogo": "New York",  "descrizione": "Raccolta pubblicata a New York nel 1914." },
+    { "nome": "Peccati",         "slug": "peccati",         "anno": "1916", "luogo": "New York",  "descrizione": "Raccolta pubblicata a New York nel 1916." }
+  ]
+}

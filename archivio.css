@@ -1,0 +1,298 @@
+/* =========================================================
+   Poetry archive (poesie.html) and dynamic poem page (poesia.html)
+   Loaded AFTER styles.css and poesia-liberta.css: it reuses their
+   tokens (--ink, --sand, --paper, --font-display …), the header,
+   buttons, filters, breadcrumb, .poem-layout, .poem-text, .meta-list.
+   ========================================================= */
+
+/* ---------- Badges (AR / audio) ---------- */
+.badge {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge-ar { background: var(--ink); color: var(--paper); }
+.badge-ar-soon { border: 1px solid var(--sand-deep); color: var(--sand-deep); }
+.badge-plain { background: var(--sand-light); color: var(--sand-deep); }
+
+/* =========================================================
+   Archive page
+   ========================================================= */
+.archive-hero {
+  padding: calc(var(--header-h) + 3.5rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+}
+.archive-hero h1 { font-size: clamp(3rem, 7vw, 5.4rem); margin-bottom: 0.3em; }
+.archive-hero .hero-lead { max-width: 620px; margin-bottom: 0; }
+
+.catalogue-section { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* Search + filters */
+.catalogue-tools {
+  display: grid;
+  gap: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.catalogue-search label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+}
+.catalogue-search input {
+  width: 100%;
+  max-width: 560px;
+  padding: 0.7rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.catalogue-search input::placeholder { color: #a39b90; font-style: italic; }
+.catalogue-search input:focus-visible { outline: none; border-bottom-width: 2px; padding-bottom: calc(0.7rem - 1px); }
+.catalogue-search input::-webkit-search-cancel-button { cursor: pointer; }
+
+.catalogue-status {
+  min-height: 1.6em;
+  margin: 0 0 2rem;
+  font-size: 0.85rem;
+  color: var(--sand-deep);
+}
+
+/* A group = one collection */
+.catalogue { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+.catalogue-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1.5rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--ink);
+}
+.catalogue-group-head h3 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+}
+.catalogue-group-meta {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--sand-deep);
+}
+
+.catalogue-list { margin: 0; padding: 0; list-style: none; }
+.catalogue-subhead {
+  padding: 1.6rem 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+}
+.catalogue-row { border-bottom: 1px solid var(--line); }
+
+.catalogue-item {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto 1.5rem;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  padding: 1.05rem 0.4rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.3s, padding 0.4s var(--ease);
+}
+.catalogue-item:hover,
+.catalogue-item:focus-visible { background: var(--paper); padding-left: 0.9rem; padding-right: 0.9rem; }
+.catalogue-num {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--sand-deep);
+  font-variant-numeric: lining-nums;
+}
+.catalogue-main { display: flex; flex-direction: column; min-width: 0; }
+.catalogue-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.catalogue-sub { font-size: 0.8rem; color: var(--muted); }
+.catalogue-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.4rem; }
+.catalogue-arrow { color: var(--sand-deep); transition: transform 0.35s var(--ease); }
+.catalogue-item:hover .catalogue-arrow { transform: translateX(4px); }
+
+/* Empty / error state */
+.catalogue-empty {
+  padding: 3rem 0;
+  max-width: 520px;
+}
+.catalogue-empty-title {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--ink);
+}
+
+.catalogue-note {
+  max-width: 640px;
+  margin: 3.5rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+}
+.catalogue-note a { color: var(--ink); }
+
+/* =========================================================
+   Poem page (poesia.html)
+   ========================================================= */
+.poem-head {
+  padding: calc(var(--header-h) + 3.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+}
+.poem-head h1 {
+  max-width: 14ch;
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  margin-bottom: 0.2em;
+  overflow-wrap: anywhere;
+}
+.poem-head .poem-author { margin-bottom: 1.8rem; }
+.poem-head .hero-actions .btn { min-height: 52px; }
+.poem-head .breadcrumb { flex-wrap: wrap; }
+
+/* Disabled-looking state for "AR in preparazione" (not a link, not a button) */
+.ar-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0 1.4rem;
+  border: 1px dashed var(--sand-deep);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: var(--sand-deep);
+}
+
+/* Text not transcribed yet */
+.poem-pending {
+  max-width: 34rem;
+  padding: 1.6rem 1.8rem;
+  border: 1px dashed var(--sand-deep);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.poem-pending p { color: var(--ink-2); }
+.poem-pending p:last-child { margin-bottom: 0; }
+.poem-pending-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* Dedication printed under the title of the poem */
+.poem-dedication {
+  margin: 0 0 1.4rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+/* Discreet notice: the transcription still has to be checked against the book */
+.poem-draft-note {
+  max-width: 34rem;
+  margin: 1.6rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--sand-deep);
+}
+
+.poem-notes {
+  max-width: 34rem;
+  margin: 2.4rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(141, 110, 79, 0.28);
+  font-size: 0.9rem;
+}
+.poem-notes strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+}
+
+.meta-list dd a { color: var(--ink); text-underline-offset: 0.2em; }
+.meta-list dd.meta-small { font-family: var(--font-body); font-size: 1rem; }
+
+/* Previous / next poem of the same collection */
+.poem-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.poem-pager a {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+  text-decoration: none;
+  color: var(--ink);
+}
+.poem-pager .pager-next { text-align: right; margin-left: auto; }
+.poem-pager small {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+}
+.poem-pager span {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.poem-pager a:hover span { text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Poem not found */
+.poem-missing { padding: calc(var(--header-h) + 5rem) 0 7rem; }
+.poem-missing h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+.poem-missing p { max-width: 520px; font-size: 1.08rem; }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 720px) {
+  .catalogue-item {
+    grid-template-columns: 2.2rem minmax(0, 1fr) 1.2rem;
+    grid-template-areas: "num main arrow" ". badges .";
+  }
+  .catalogue-num { grid-area: num; }
+  .catalogue-main { grid-area: main; }
+  .catalogue-arrow { grid-area: arrow; }
+  .catalogue-badges { grid-area: badges; justify-content: flex-start; }
+  .catalogue-badges:empty { display: none; }
+
+  .catalogue-search input { font-size: 1.45rem; }
+  .poem-head h1 { max-width: none; }
+  .poem-head .hero-actions { flex-direction: column; align-items: stretch; }
+  .ar-soon { justify-content: center; }
+  .poem-pager { flex-direction: column; }
+  .poem-pager a { max-width: none; }
+  .poem-pager .pager-next { text-align: left; margin-left: 0; }
+}

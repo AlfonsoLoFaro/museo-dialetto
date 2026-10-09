@@ -1125,3 +1125,83 @@ em { font-style: italic; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+
+/* =========================================================
+   Michele Pane section details, sources, archive teaser
+   (added with the poetry archive)
+   ========================================================= */
+.section-actions { gap: 0.9rem; flex-wrap: wrap; }
+
+/* "da verificare": a quiet editorial flag, not an alarm */
+.verify {
+  display: inline-block;
+  padding: 0 0.45rem;
+  border: 1px dashed var(--sand-deep);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--sand-deep);
+  white-space: nowrap;
+}
+
+/* Essential chronology */
+.timeline {
+  list-style: none;
+  margin: 0 0 2.2rem;
+  padding: 0 0 0 1.4rem;
+  border-left: 1px solid var(--sand);
+}
+.timeline li {
+  position: relative;
+  padding: 0.35rem 0;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -1.4rem;
+  top: 1.05rem;
+  width: 7px;
+  height: 7px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--sand-deep);
+}
+.timeline time {
+  display: inline-block;
+  min-width: 3.2rem;
+  margin-right: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+/* Sources: collapsed by default */
+.sources {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(141, 110, 79, 0.28);
+}
+.sources summary {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+}
+.sources summary::marker { color: var(--sand-deep); }
+.sources-body { max-width: 760px; margin-top: 1rem; font-size: 0.9rem; }
+.sources-body ul { margin: 0 0 1em; padding-left: 1.1rem; color: var(--muted); }
+.sources-body li { margin-bottom: 0.4em; }
+.sources-body a { color: var(--ink); text-underline-offset: 0.2em; }
+.sources-note { font-size: 0.82rem; }
+
+a.card-link { text-decoration: none; }
+
+.archive-card .tag { align-self: flex-start; }
